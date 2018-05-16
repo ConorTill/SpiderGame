@@ -13,6 +13,10 @@ namespace Assets.Scripts.Units.Spiders
             attackTimer = 0;
             health = 20;
             weaponDamage = 2;
+
+            Rigidbody2D physBody = transform.GetComponent<Rigidbody2D>();
+            physBody.drag = 100.0f;
+            physBody.freezeRotation = true;
         }
 
         public GameObject Spider { get; set; }
@@ -30,7 +34,9 @@ namespace Assets.Scripts.Units.Spiders
         {
             if (!destinationReached)
             {
-                transform.position = Vector3.MoveTowards(transform.position, destination, 0.1f);
+                Rigidbody2D physBody = transform.GetComponent<Rigidbody2D>();
+                physBody.velocity = (destination - transform.position).normalized * 10.0f;
+
                 if (destination == pos)
                     destinationReached = true;
             }
