@@ -51,13 +51,17 @@ public class InputComponent : MonoBehaviour {
 
         if (Input.GetMouseButtonDown(1))
         {
-            GameObject target = new Raycast().Cast(mousePos, Vector3.zero);
+            //GameObject target = new Raycast().Cast(mousePos, Vector3.zero);
 
-            if (target == null) {
-                moveCommand.Execute(mousePos, selectedUnits);
-            } else if (target)
+            //if (target == null) {
+            //    moveCommand.Execute(mousePos, selectedUnits);
+            //} else if (target)
+            //{
+            //    attackCommand.Execute(target, selectedUnits);
+            //}
+            foreach(var spider in spiderFactory.spidersList.spidersList)
             {
-                attackCommand.Execute(target, selectedUnits);
+                spider.agent.SetDestination(mousePos);
             }
         }
 

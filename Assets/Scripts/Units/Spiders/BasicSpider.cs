@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.AI;
 
 namespace Assets.Scripts.Units.Spiders
 {
@@ -21,6 +22,7 @@ namespace Assets.Scripts.Units.Spiders
 
         public GameObject Spider { get; set; }
 
+        public NavMeshAgent agent;
         public bool isDead;
         private Vector3 destination;
         public bool destinationReached;
@@ -100,6 +102,7 @@ namespace Assets.Scripts.Units.Spiders
 
         public void Update()
         {
+            agent.SetDestination(new Vector3(0,0,0));
             if (transform.childCount != 0)
             {
                 if (selected)
